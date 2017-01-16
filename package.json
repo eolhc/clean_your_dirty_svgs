@@ -1,0 +1,14 @@
+{
+  "name": "svg-templatorino",
+  "version": "1.0.0",
+  "description": "transform svg into html for easier manipulation",
+  "main": "svg_templatorino.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "eolhc",
+  "license": "ISC",
+  "devDependencies": {
+    "handlebars": "^4.0.6"
+  }
+}
