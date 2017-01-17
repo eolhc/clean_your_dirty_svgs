@@ -9,6 +9,7 @@ var templateFile = 'template.html'
 var svg = {
   line: ''
 };
+var html;
 
 fs.readFile(svgFile,'utf8',function(err,data) {
 
@@ -27,6 +28,15 @@ fs.readFile(templateFile,'utf8',function(err,source) {
   }
   var source = source;
   var template = handlebars.compile(source);
-  var html = template(svg);
-  console.log(html);
+  html = template(svg);
+
+  write(html);
 })
+
+
+function write(html) {
+  fs.writeFile('output.html', html, (err) => {
+    if (err) throw err;
+    console.log('Output saved in output.html');
+  });
+}
