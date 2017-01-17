@@ -1,24 +1,32 @@
+#!/usr/bin/env node
+
+var handlebars = require('handlebars');
 fs = require('fs')
 
-//take in svg file
-var svgFile = process.argv[2]
-//take in the template
-var templateFile = process.argv[3]
+var source;
+var svgFile = 'your_svg.svg'
+var templateFile = 'template.html'
+var svg = {
+  line: ''
+};
 
 fs.readFile(svgFile,'utf8',function(err,data) {
+
   if (err) {
     return console.log(err);
   }
-  var split_svg_lines = data.toString().split('\n')
-  console.log(split_svg_lines)
-  //for each in array i want to pop it into the template
+  svg['line'] = data.toString().split('\n');
+  svg['line'].pop();
+  return svg;
 })
 
-//take in the template
-fs.readFile(templateFile,'utf8', function(err,data) {
+fs.readFile(templateFile,'utf8',function(err,source) {
+
   if (err) {
     return console.log(err);
   }
-  var template = data.toString();
-  console.log(template)
+  var source = source;
+  var template = handlebars.compile(source);
+  var html = template(svg);
+  console.log(html);
 })
